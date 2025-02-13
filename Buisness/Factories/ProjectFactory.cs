@@ -23,4 +23,22 @@ public static class ProjectFactory
         StartDate = entity.StartDate,
         EndDate = entity.EndDate,
     };
+
+    public static ProjectUpdateForm Create(Project project) => new()
+    {
+        Id = project.Id,
+        Titel = project.Titel,
+        Description = project.Description,
+        StartDate = project.StartDate,
+        EndDate = project.EndDate,
+    };
+
+    public static ProjectEntity Create(ProjectUpdateForm form) => new()
+    {
+        Id = form.Id,
+        Titel = form.Titel,
+        Description = form.Description,
+        StartDate = form.StartDate,
+        EndDate = form.EndDate,
+    };
 }

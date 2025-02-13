@@ -12,9 +12,9 @@ public class Project
 
     [Column(TypeName = "date")]
 
-    public DateTime StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
 
     [Column(TypeName = "date")]
 
-    public DateTime EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
 }

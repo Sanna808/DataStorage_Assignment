@@ -2,9 +2,10 @@
 
 namespace Buisness.Models;
 
-public class ProjectRegistrationForm
+public class ProjectUpdateForm
 {
-  
+    public int Id { get; set; }
+
     public string Titel { get; set; } = null!;
 
     public string? Description { get; set; }
