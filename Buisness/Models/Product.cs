@@ -1,15 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Buisness.Models;
 
-namespace Data.Enteties;
-
-public class ProductEntity
+public class Product
 {
-    [Key]
-
     public int Id { get; set; }
 
     public string ProductName { get; set; } = null!;
 
     public decimal? Price { get; set; }
-
 }

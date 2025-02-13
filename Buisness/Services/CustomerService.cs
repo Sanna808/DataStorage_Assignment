@@ -2,7 +2,6 @@
 using Buisness.Interfaces;
 using Buisness.Models;
 using Data.Interfaces;
-using Data.Repositories;
 
 namespace Buisness.Services;
 
