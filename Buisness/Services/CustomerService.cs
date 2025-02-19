@@ -33,13 +33,13 @@ public class CustomerService(ICustomerRepository customerRepository) : ICustomer
 
     public async Task<Customer> UppdateCustomerAsync(CustomerUpdateForm form)
     {
-        var existingEntity = await _customerRepository.GetAsync(x => x.CustomerName == form.CustomerName);
+        var existingEntity = await _customerRepository.GetAsync(x => x.Id == form.Id);
         if (existingEntity == null)
             return null!;
 
         existingEntity.CustomerName = form.CustomerName ?? existingEntity.CustomerName;
 
-        var result = await _customerRepository.UpdateAsync(x => x.Id == form.Id, existingEntity);
+        var result = await _customerRepository.UpdateAsync(existingEntity);
         if (result == null)
             return null!;
 

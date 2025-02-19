@@ -2,6 +2,7 @@
 using Buisness.Interfaces;
 using Buisness.Models;
 using Data.Interfaces;
+using Data.Repositories;
 
 namespace Buisness.Services;
 
@@ -24,9 +25,9 @@ public class UserService(IUserRepository userRepository) : IUserService
         return users ?? [];
     }
 
-    public async Task<User> GetUserByIdAsync(int id)
+    public async Task<User> GetUserByEmailAsync(string email)
     {
-        var userEntity = await _userRepository.GetAsync(x => x.Id == id);
+        var userEntity = await _userRepository.GetAsync(x => x.Email == email);
         var user = UserFactory.Create(userEntity);
         return user ?? null!;
     }
@@ -41,14 +42,14 @@ public class UserService(IUserRepository userRepository) : IUserService
         existingEntity.LastName = form.LastName ?? existingEntity.LastName;
         existingEntity.Email = form.Email ?? existingEntity.Email;
 
-        var result = await _userRepository.UpdateAsync(x => x.Id == form.Id, existingEntity);
+        var result = await _userRepository.UpdateAsync(existingEntity);
         if (result == null)
             return null!;
 
         return UserFactory.Create(result);
     }
 
-    public async Task<bool> DeleteProductAsync(int id)
+    public async Task<bool> DeleteUserAsync(int id)
     {
         var result = await _userRepository.DeleteAsync(x => x.Id == id);
         return result;

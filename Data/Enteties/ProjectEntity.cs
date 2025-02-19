@@ -37,7 +37,4 @@ public class ProjectEntity
     public int UserId { get; set; }
 
     public UserEntity User { get; set; } = null!;
-
-
-
 }

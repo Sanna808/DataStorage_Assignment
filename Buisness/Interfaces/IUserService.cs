@@ -1,16 +1,13 @@
 ﻿using Buisness.Models;
 
-namespace Buisness.Interfaces;
-
-public interface IUserService
+namespace Buisness.Interfaces
 {
-    Task<User> CreateUserAsync(UserRegistrationForm form);
-
-    Task<bool> DeleteProductAsync(int id);
-
-    Task<IEnumerable<User>> GetAllUsersAsync();
-
-    Task<User> GetUserByIdAsync(int id);
-
-    Task<User> UppdateUserAsync(UserUpdateForm form);
+    public interface IUserService
+    {
+        Task<User> CreateUserAsync(UserRegistrationForm form);
+        Task<bool> DeleteUserAsync(int id);
+        Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<User> GetUserByEmailAsync(string email);
+        Task<User> UppdateUserAsync(UserUpdateForm form);
+    }
 }

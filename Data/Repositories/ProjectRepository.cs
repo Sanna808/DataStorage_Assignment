@@ -10,14 +10,14 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
 {
     private readonly DataContext _context = context;
 
-    public override async Task<IEnumerable<ProjectEntity>> GetAllAsync()
-    {
-        var entities = await _context.Projects
-            .Include(x => x.Status)
-            .ToListAsync();
+    //public override async Task<IEnumerable<ProjectEntity>> GetAllAsync()
+    //{
+    //    var entities = await _context.Projects
+    //        .Include(x => x.Status)
+    //        .ToListAsync();
 
-        return entities;
-    }
+    //    return entities;
+    //}
 
     public override async Task<ProjectEntity> GetAsync(Expression<Func<ProjectEntity, bool>> expression)
     {
@@ -30,5 +30,15 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
             .Include (p => p.Status)
             .Include (p => p.User)
             .FirstOrDefaultAsync(expression) ?? null!;
+    }
+   
+    public override async Task<IEnumerable<ProjectEntity>> GetAllAsync()
+    {
+        return await _context.Projects
+            .Include(p => p.Customer)
+            .Include(p => p.Product)
+            .Include(p => p.Status)
+            .Include(p => p.User)
+            .ToListAsync();
     }
 }

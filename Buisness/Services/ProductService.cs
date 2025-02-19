@@ -2,6 +2,7 @@
 using Buisness.Interfaces;
 using Buisness.Models;
 using Data.Interfaces;
+using Data.Repositories;
 
 namespace Buisness.Services;
 
@@ -33,14 +34,14 @@ public class ProductService(IProductRepository productRepository) : IProductServ
 
     public async Task<Product> UppdateProductAsync(ProductUpdateForm form)
     {
-        var existingEntity = await _productRepository.GetAsync(x => x.ProductName == form.ProductName);
+        var existingEntity = await _productRepository.GetAsync(x => x.Id == form.Id);
         if (existingEntity == null)
             return null!;
 
         existingEntity.ProductName = form.ProductName ?? existingEntity.ProductName;
         existingEntity.Price = form.Price ?? existingEntity.Price;
 
-        var result = await _productRepository.UpdateAsync(x => x.Id == form.Id, existingEntity);
+        var result = await _productRepository.UpdateAsync(existingEntity);
         if (result == null)
             return null!;
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buisness.Models;
 
@@ -10,11 +11,22 @@ public class Project
 
     public string? Description { get; set; }
 
-    [Column(TypeName = "date")]
-
     public DateTime? StartDate { get; set; }
 
-    [Column(TypeName = "date")]
-
     public DateTime? EndDate { get; set; }
+
+    public string CustomerName { get; set; } = null!;
+
+    public string ProductName { get; set; } = null!;
+
+    public decimal? Price { get; set; }
+
+    public string StatusName { get; set; } = null!;
+
+    public string FirstName { get; set; } = null!;
+
+    public string LastName { get; set; } = null!; 
+
+    public string Email { get; set; } = null!;
+
 }

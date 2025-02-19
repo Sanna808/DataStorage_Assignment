@@ -2,6 +2,7 @@
 using Buisness.Interfaces;
 using Buisness.Models;
 using Data.Interfaces;
+using Data.Repositories;
 
 namespace Buisness.Services;
 
@@ -33,13 +34,13 @@ public class StatusTypeService(IStatusTypeRepository statusTypeRepository) : ISt
 
     public async Task<StatusType> UppdateStatusTypeAsync(StatusTypeUpdateForm form)
     {
-        var existingEntity = await _statusTypeRepository.GetAsync(x => x.StatusName == form.StatusName);
+        var existingEntity = await _statusTypeRepository.GetAsync(x => x.Id == form.Id);
         if (existingEntity == null)
             return null!;
 
         existingEntity.StatusName = form.StatusName ?? existingEntity.StatusName;
 
-        var result = await _statusTypeRepository.UpdateAsync(x => x.Id == form.Id, existingEntity);
+        var result = await _statusTypeRepository.UpdateAsync(existingEntity);
         if (result == null)
             return null!;
 

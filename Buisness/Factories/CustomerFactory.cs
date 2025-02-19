@@ -7,6 +7,7 @@ public static class CustomerFactory
 {
     public static CustomerRegistraitionForm Create() => new();
 
+
     public static CustomerEntity Create(CustomerRegistraitionForm form) => new()
     {
         CustomerName = form.CustomerName,
